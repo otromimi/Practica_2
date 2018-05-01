@@ -29,11 +29,6 @@ int main(){
             break;
     }
 
-
-
-
-
-
 }
 
 
@@ -46,9 +41,22 @@ int menu(){
     scanf("%i",&opcion);
     if(opcion<0||opcion>4){
         system("cls");
-        printf("\n\tLa opcion seleccionada no es valida.\n\n");
+        system("color 4");
+        printf("\n\tLa opcion seleccionada no es valida.\n\n ");
         system("pause");
+        system("color 7");
         opcion=menu();
     }
     return opcion;
 }
+
+
+
+void opcion1(){}
+
+void opcion2(){}
+
+void opcion3(){}
+
+void opcion4(){}
+
