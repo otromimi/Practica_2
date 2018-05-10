@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 
 int menu();
@@ -8,7 +9,7 @@ int menu();
 
 int main(){
 
-    int opcion;
+    int opcion,cont;
     do{
         opcion=menu();
         switch(opcion){
@@ -19,7 +20,8 @@ int main(){
                 printf("\n\tOPCION 1.- COMBREOBAR EL ULTIMO NUMERO\n\n");
                 printf("---------------------------------------------------------");
                 printf("\n\n Introduzca una secuencia de numeros positivos..\n <Un numero en cada linea, 0 para terminar>\n\n");
-                opcion1();
+                cont=0;
+                opcion1(&cont);
                 system("pause");
                 break;
             case 2:
@@ -61,24 +63,30 @@ int menu(){
 
 
 
-int opcion1(){
+int opcion1(int *p_cont){
 
-    int num;
+    int num=0,last=0;
 
-    printf("\r Introduce un numero: ");
+
+    printf("\n Introduce un numero: ");
     scanf("%i",&num);
     if(num<0){
-        //printf("\r");
-        opcion1();
+
+        printf("\t\t\tNumero invalido.\n");
+        opcion1(p_cont);
+
+    }else if(num>0){
+
+        ++*p_cont;
+        opcion1(p_cont);
+
+
     }else{
-        printf("\n");
-        if(num=0){
-            printf("\n\n\tEl ultimo valor es %i",num);
-        }else{
-            opcion1();
-        }
+
+        printf("\n\n\tSe introducieron %i numeros con el ultimo valor %i.\n\n  ",*p_cont,last);
+
     }
- return num;
+    return num;
 }
 
 void opcion2(){}
