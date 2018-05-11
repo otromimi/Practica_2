@@ -35,7 +35,11 @@ int main(){
                 break;
             case 3:
                 system("cls");
-                printf("opcion 3");
+                printf("\n\tOPCION 3.- SECUENCIA INVERTIDA Y REPLICADA TOTALMENTE\n\n");
+                printf("---------------------------------------------------------");
+                printf("\n\n Introduzca una secuencia de numeros positivos, 0 para terminar.\n\t");
+                opcion3();
+                system("pause");
                 break;
             case 4:
                 system("cls");
@@ -117,7 +121,25 @@ int opcion2(){
 
 }
 
-void opcion3(){}
+int opcion3(){
+
+     int i,num=0,devuelto=0;
+
+
+    scanf("%i",&num);
+    if(num<0){
+        opcion3();
+    }else if(num>0){
+        devuelto=opcion3();
+        for(i=0;i<num;i++){
+            printf("%i ",num);
+        }
+    }else{
+        printf("%i\n\n\t",0);
+        printf("La secuencia es: ");
+        return num;
+    }
+}
 
 void opcion4(){}
 
