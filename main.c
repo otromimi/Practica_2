@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <string.h>
 
 
 int menu();
-
-
+int opcion1(int *p_cont);
+int opcion2();
+int opcion3();
+int opcion4(int *suma);
 
 int main(){
 
-    int opcion,cont,last;
+    int opcion,cont,last,suma;
+    char relaccion[6];
+
     do{
         opcion=menu();
         switch(opcion){
@@ -31,6 +36,7 @@ int main(){
                 printf("---------------------------------------------------------");
                 printf("\n\n Introduzca una secuencia de numeros positivos, 0 para terminar.\n\t");
                 opcion2();
+                printf("\n\n\t");
                 system("pause");
                 break;
             case 3:
@@ -39,11 +45,26 @@ int main(){
                 printf("---------------------------------------------------------");
                 printf("\n\n Introduzca una secuencia de numeros positivos, 0 para terminar.\n\t");
                 opcion3();
+                printf("\n\n\t");
                 system("pause");
                 break;
             case 4:
                 system("cls");
-                printf("opcion 4");
+                printf("\n\tOPCION 4.- COMPROBAR PRIMER NUMERO Y SUMA\n\n");
+                printf("---------------------------------------------------------");
+                printf("\n\n Introduzca una secuencia de numeros positivos..\n <Un numero en cada linea, 0 para terminar>\n\n");
+                suma=0;
+                last=opcion4(&suma);
+                if(last<(suma-last)){
+                    strcpy(relaccion,"MAYOR");
+                }else if(last>(suma-last)){
+                    strcpy(relaccion,"MENOR");
+                }else{
+                    strcpy(relaccion,"IGUAL");
+                }
+                printf("\n\n  La suma de los elementos inttroducidos <%i>, menos el primero es %s que el primer elemento <%i>",suma-last,relaccion,last);
+                printf("\n\n\t");
+                system("pause");
                 break;
         }
 
@@ -113,7 +134,7 @@ int opcion2(){
             printf("%i ",num);
         }
     }else{
-        printf("%i\n\n\t",0);
+        printf("\n\n\t");
         printf("La secuencia es: ");
         return num;
     }
@@ -135,11 +156,33 @@ int opcion3(){
             printf("%i ",num);
         }
     }else{
-        printf("%i\n\n\t",0);
+        printf("\n\n\t");
         printf("La secuencia es: ");
         return num;
     }
 }
 
-void opcion4(){}
+int opcion4(int *suma){
+
+    int first_number,num;
+
+    printf("\n Introduce un numero: ");
+    scanf("%i",&num);
+    if(num<0){
+        printf("\t\t\tNumero invalido.\n");
+        opcion4(suma);
+    }else if(num>0){
+        *suma+=num;
+        opcion4(suma);
+        return num;
+    }else{
+        //return num;
+    }
+
+}
+
+
+
+
+
 
