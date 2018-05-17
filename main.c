@@ -5,15 +5,14 @@
 
 
 int menu();
-int opcion1(int *p_cont);
-int opcion2();
-int opcion3();
-int opcion4(int *suma);
+void opcion1(int cont,int last);
+void opcion2();
+void opcion3();
+void opcion4(int suma,int first_num);
 
 int main(){
 
-    int opcion,cont,last,suma;
-    char relaccion[6];
+    int opcion;
 
     do{
         opcion=menu();
@@ -25,10 +24,7 @@ int main(){
                 printf("\n\tOPCION 1.- COMBREOBAR EL ULTIMO NUMERO\n\n");
                 printf("---------------------------------------------------------");
                 printf("\n\n Introduzca una secuencia de numeros positivos..\n <Un numero en cada linea, 0 para terminar>\n\n");
-                cont=0;
-                last=opcion1(&cont);
-                printf("\n\n\tSe introducieron %i numeros con el ultimo valor %i.\n\n  ",cont,last);
-                system("pause");
+                opcion1(0,0);
                 break;
             case 2:
                 system("cls");
@@ -53,18 +49,7 @@ int main(){
                 printf("\n\tOPCION 4.- COMPROBAR PRIMER NUMERO Y SUMA\n\n");
                 printf("---------------------------------------------------------");
                 printf("\n\n Introduzca una secuencia de numeros positivos..\n <Un numero en cada linea, 0 para terminar>\n\n");
-                suma=0;
-                last=opcion4(&suma);
-                if(last<(suma-last)){
-                    strcpy(relaccion,"MAYOR");
-                }else if(last>(suma-last)){
-                    strcpy(relaccion,"MENOR");
-                }else{
-                    strcpy(relaccion,"IGUAL");
-                }
-                printf("\n\n  La suma de los elementos inttroducidos <%i>, menos el primero es %s que el primer elemento <%i>",suma-last,relaccion,last);
-                printf("\n\n\t");
-                system("pause");
+                opcion4(0,0);
                 break;
         }
 
@@ -93,90 +78,98 @@ int menu(){
 
 
 
-int opcion1(int *p_cont){
+void opcion1(int cont,int last){
 
-    int num=0,last=0;
+    int num=0;
+    char relacion[6];
 
     printf("\n Introduce un numero: ");
     scanf("%i",&num);
     if(num<0){
         printf("\t\t\tNumero invalido.\n");
-        opcion1(p_cont);
+        opcion1(cont,last);
     }else if(num>0){
-        ++*p_cont;
-        last=opcion1(p_cont);
-        if(last==0){
-            return num;
-        }else{
-            return last;
-        }
+        cont++;
+        last=num;
+        opcion1(cont,num);
     }else{
-        return num;
+        if(cont-1<last){
+            strcpy(relacion,"MAYOR");
+        }else if(cont-1>last){
+            strcpy(relacion,"MENOR");
+        }else{
+            strcpy(relacion,"IGUAL");
+        }
+        printf("\n\n\tEl ultimo valor introducido %i, es %s de la cantidad de numeros positivos %i.\n\n  ",last,relacion,cont-1);
+        system("pause");
     }
 }
 
-int opcion2(){
+void opcion2(int last_num){
 
-    int i,num=0,devuelto=0;
-
+    int i,num=0;
 
     scanf("%i",&num);
     if(num<0){
-        opcion2();
+        opcion2(last_num);
     }else if(num>0){
-
-        devuelto=opcion2();
-        if(devuelto==0){
-            for(i=0;i<num;i++){
-                printf("%i ",num);
-            }
-        }else{
-            printf("%i ",num);
-        }
+        opcion2(num);
+        printf("%i ",num);
     }else{
         printf("\n\n\t");
         printf("La secuencia es: ");
-        return num;
+        for(i=0;i<last_num-1;i++){
+                printf("%i ",last_num);
+        }
     }
-
-
 }
 
-int opcion3(){
+void opcion3(){
 
-     int i,num=0,devuelto=0;
-
+     int i,num=0;
 
     scanf("%i",&num);
     if(num<0){
         opcion3();
     }else if(num>0){
-        devuelto=opcion3();
+        opcion3();
         for(i=0;i<num;i++){
             printf("%i ",num);
         }
     }else{
         printf("\n\n\t");
         printf("La secuencia es: ");
-        return num;
+
     }
 }
 
-int opcion4(int *suma){
+void opcion4(int suma,int first_num){
 
-    int first_number,num;
+    int num;
+    char relacion[6];
 
     printf("\n Introduce un numero: ");
     scanf("%i",&num);
     if(num<0){
         printf("\t\t\tNumero invalido.\n");
-        opcion4(suma);
+        opcion4(suma,first_num);
     }else if(num>0){
-        *suma+=num;
-        opcion4(suma);
-        return num;
+        if(suma==0){
+            first_num=num;
+        }
+        suma+=num;
+        opcion4(suma,first_num);
     }else{
-        //return num;
+        if(first_num<(suma-first_num)){
+            strcpy(relacion,"MAYOR");
+        }else if(first_num>(suma-first_num)){
+            strcpy(relacion,"MENOR");
+        }else{
+            strcpy(relacion,"IGUAL");
+        }
+        printf("\n\n  La suma de los elementos inttroducidos <%i>, menos el primero es %s que el primer elemento <%i>",suma-first_num,relacion,first_num);
+        printf("\n\n\t");
+        system("pause");
     }
 
 }
