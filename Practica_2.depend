@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1525998520 source:d:\media\files\github\practica_2\main.c
+1526599000 source:d:\media\files\github\practica_2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
+	<string.h>
 

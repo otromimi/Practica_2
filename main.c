@@ -83,12 +83,13 @@ void opcion1(int cont,int last){
     int num=0;
     char relacion[6];
 
+    do{
     printf("\n Introduce un numero: ");
     scanf("%i",&num);
     if(num<0){
         printf("\t\t\tNumero invalido.\n");
-        opcion1(cont,last);
-    }else if(num>0){
+    }}while(num<0);
+    if(num>0){
         cont++;
         last=num;
         opcion1(cont,num);
@@ -109,10 +110,11 @@ void opcion2(int last_num){
 
     int i,num=0;
 
-    scanf("%i",&num);
-    if(num<0){
-        opcion2(last_num);
-    }else if(num>0){
+    do{
+        scanf("%i",&num);
+    }while(num<0);
+
+    if(num>0){
         opcion2(num);
         printf("%i ",num);
     }else{
@@ -128,10 +130,12 @@ void opcion3(){
 
      int i,num=0;
 
-    scanf("%i",&num);
-    if(num<0){
-        opcion3();
-    }else if(num>0){
+    do{
+        scanf("%i",&num);
+    }while(num<0);
+
+
+    if(num>0){
         opcion3();
         for(i=0;i<num;i++){
             printf("%i ",num);
@@ -148,12 +152,14 @@ void opcion4(int suma,int first_num){
     int num;
     char relacion[6];
 
-    printf("\n Introduce un numero: ");
-    scanf("%i",&num);
-    if(num<0){
-        printf("\t\t\tNumero invalido.\n");
-        opcion4(suma,first_num);
-    }else if(num>0){
+    do{
+        printf("\n Introduce un numero: ");
+        scanf("%i",&num);
+        if(num<0){
+            printf("\t\t\tNumero invalido.\n");
+    }}while(num<0);
+
+    if(num>0){
         if(suma==0){
             first_num=num;
         }
